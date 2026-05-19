@@ -1,43 +1,24 @@
 {
   "name": "MADEWORK ERP",
   "short_name": "MADEWORK",
-  "description": "Sistema de gestión para constructora EPS",
-  "start_url": "./MADEWORK.html",
+  "description": "ERP Construccion EPS",
+  "start_url": "MADEWORK_NUEVO.html",
   "display": "standalone",
-  "background_color": "#161616",
-  "theme_color": "#C8A84B",
-  "orientation": "any",
-  "lang": "es",
+  "background_color": "#1a1a2e",
+  "theme_color": "#1a1a2e",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%23161616'/><text x='50%25' y='55%25' font-size='80' text-anchor='middle' dominant-baseline='middle' fill='%23C8A84B' font-family='Arial' font-weight='900'>M</text></svg>",
+      "src": "icon.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%23161616'/><text x='50%25' y='55%25' font-size='280' text-anchor='middle' dominant-baseline='middle' fill='%23C8A84B' font-family='Arial' font-weight='900'>M</text></svg>",
+      "src": "icon.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
-    }
-  ],
-  "categories": ["business", "finance"],
-  "shortcuts": [
-    {
-      "name": "Nuevo Egreso",
-      "url": "./MADEWORK.html#egresos",
-      "description": "Cargar un egreso rápido"
-    },
-    {
-      "name": "Nuevo Ingreso", 
-      "url": "./MADEWORK.html#ingresos",
-      "description": "Cargar un ingreso rápido"
-    },
-    {
-      "name": "Dashboard",
-      "url": "./MADEWORK.html#dashboard",
-      "description": "Ver el resumen general"
     }
   ]
 }
