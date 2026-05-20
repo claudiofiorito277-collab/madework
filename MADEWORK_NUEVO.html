@@ -2974,6 +2974,8 @@ async function pullSync() {
       });
       localStorage.setItem('MADEWORK_V2',JSON.stringify(DB));
       syncStatus('✓ Sincronizado','var(--ok)');
+      // Refrescar toda la UI con los datos nuevos
+      rDash();
       return true;
     }
   } catch(e) {
