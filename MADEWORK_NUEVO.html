@@ -5250,14 +5250,10 @@ function renderFotosPanel(obraId) {
     } else {
       h += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px">';
       fotos.forEach(function(f) {
-        var fd  = f.fecha ? f.fecha.split('-').reverse().join('/') : '';
-        var src = f.url || f.data || '';
-        // Corregir MIME type incorrecto (fallback guardado como application/octet-stream)
-        if (src && src.indexOf('data:') === 0 && src.indexOf('data:image') !== 0) {
-          src = 'data:image/jpeg;base64,' + src.split(',').slice(1).join(',');
-        }
+        var fd = f.fecha ? f.fecha.split('-').reverse().join('/') : '';
+        // El thumbnail se pone vía JS después (evita que innerHTML trunque base64 largo)
         h += '<div style="position:relative;border-radius:8px;overflow:hidden;background:var(--dk3);border:1px solid var(--dk4)">';
-        h += '<div onclick="fotoLightbox('+f.id+')" style="width:100%;height:160px;background-image:url(\''+src+'\');background-size:cover;background-position:center;cursor:zoom-in;border-radius:6px 6px 0 0"></div>';
+        h += '<div id="fthumb-'+f.id+'" onclick="fotoLightbox('+f.id+')" style="width:100%;height:160px;background-color:var(--dk4);background-size:cover;background-position:center;cursor:zoom-in;border-radius:6px 6px 0 0"></div>';
         h += '<div style="padding:5px 8px">';
         if (f.etapa) h += '<div style="font-size:10px;color:var(--gold);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+f.etapa+'</div>';
         if (fd)      h += '<div style="font-size:10px;color:var(--tx3)">'+fd+'</div>';
@@ -5273,6 +5269,18 @@ function renderFotosPanel(obraId) {
       h += '</div>';
     }
     cont.innerHTML = h;
+    // Asignar background-image vía JS después del innerHTML (evita truncado de base64)
+    fotos.forEach(function(f) {
+      var el = document.getElementById('fthumb-'+f.id);
+      if (!el) return;
+      var src = f.url || f.data || '';
+      if (!src) return;
+      // Corregir MIME type incorrecto
+      if (src.indexOf('data:') === 0 && src.indexOf('data:image') !== 0) {
+        src = 'data:image/jpeg;base64,' + src.split(',').slice(1).join(',');
+      }
+      el.style.backgroundImage = 'url("' + src + '")';
+    });
   };
 }
 
